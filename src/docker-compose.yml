@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:    
+
+    websocket-site:
+        build: 
+            context: .
+            dockerfile: ./TestWebSocket/Dockerfile
+        container_name: websocket-site
+        restart: always
+        ports: 
+            - "8000:80"
+            - "8443:443"       

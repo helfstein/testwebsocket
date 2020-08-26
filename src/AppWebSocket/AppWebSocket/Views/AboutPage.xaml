@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppWebSocket.Views.AboutPage"
+             xmlns:vm="clr-namespace:AppWebSocket.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
+    
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="1"                
+               Grid.Column="0"
+               WidthRequest="35"
+               HeightRequest="245"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               BackgroundColor="Black"
+               CornerRadius="150">
+
+        </Frame>
+        <Frame Grid.Row="1"                
+               Grid.Column="0"
+               WidthRequest="75"
+               HeightRequest="225"
+               VerticalOptions="Start"
+               HorizontalOptions="Center"
+               BackgroundColor="Gray"
+               CornerRadius="150">
+
+        </Frame>
+        <Frame Grid.Row="1"                
+               Grid.Column="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               WidthRequest="150"
+               HeightRequest="150"
+               BackgroundColor="#d5d5d5"
+               CornerRadius="150">
+            <Frame.Triggers>
+                <DataTrigger TargetType="Frame" Binding="{Binding IsLightOn}" Value="False">
+                    <Setter Property="BackgroundColor" Value="#d5d5d5"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Frame" Binding="{Binding IsLightOn}" Value="True">
+                    <Setter Property="BackgroundColor" Value="Yellow"/>
+                </DataTrigger>
+            </Frame.Triggers>
+        </Frame>
+        
+        <Button Grid.Row="2"
+                Grid.Column="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Command="{Binding LightControlCommand}"
+                Text="Ligar">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding IsLightOn}" Value="True">
+                    <Setter Property="Text" Value="Desligar"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Button" Binding="{Binding IsLightOn}" Value="False">
+                    <Setter Property="Text" Value="Ligar"/>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+
+    </Grid>
+
+</ContentPage>
